@@ -5,8 +5,8 @@
 [![Coverage][coverage-image]][coverage-url]
 
 Altcoin trading bot.
-[Read the Docs](https://github.com/glazastyi/trading/docs).
-[Contribute](https://github.com/glazastyi/trading/blob/master/CONTRIBUTING.md).
+[Read the Docs](https://github.com/altcointradingbot/trading/docs).
+[Contribute](https://github.com/altcointradingbot/trading/blob/master/CONTRIBUTING.md).
 
 #### Install
 ```
@@ -31,7 +31,7 @@ Copyright © 2017 [Nikita Komarov], [Ivan Shkurak], [Alexandra Minochkina]. See 
 
 [Telegram Chat]: https://t.me/altcointradinbot
 [telegram-image]: https://img.shields.io/badge/chat%20on-Telegram-blue.svg
-[travis-url]: https://travis-ci.org/glazastyi/trading
-[travis-badge]: https://travis-ci.org/glazastyi/trading.svg?branch=master
-[coverage-image]: https://codecov.io/gh/glazastyi/trading/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/glazastyi/trading
+[travis-url]: https://travis-ci.org/altcointradingbot/trading
+[travis-badge]: https://travis-ci.orgaltcointradingbot/trading.svg?branch=master
+[coverage-image]: https://codecov.io/gh/altcointradingbot/trading/branch/master/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/altcointradingbot/trading

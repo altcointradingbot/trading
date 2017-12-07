@@ -6,11 +6,10 @@ setup(
     name="tradingbot",
     version="0.0.0",
     authors="Komarov Nikita, Ivan Shkurak, Alexandra Minochkina",
-    author_email="nikita.a.komarov@phystech.edu",
-    url="https://github.com/glazastyi/trading",
+    url="https://github.com/altcointradingbot/trading",
     license="MIT",
     packages=[
-        "trading",
+        "tradingbot",
     ],
     install_requires=[
         "sqlite3",
@@ -34,7 +33,7 @@ setup(
         "pep257",
     ],
     classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 1",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
