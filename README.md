@@ -5,7 +5,7 @@
 [![Coverage][coverage-image]][coverage-url]
 
 Altcoin trading bot.
-[Read the Docs](https://github.com/glazastyi/trading/docs). 
+[Read the Docs](https://github.com/glazastyi/trading/docs).
 [Contribute](https://github.com/glazastyi/trading/blob/master/CONTRIBUTING.md).
 
 #### Install
@@ -19,12 +19,14 @@ One day the using process will be described here
 ```
 
 ## Copyright
-Copyright © 2017 [Nikita Komarov]. See [license] for details.
+Copyright © 2017 [Nikita Komarov], [Ivan Shkurak], [Alexandra Minochkina]. See [license] for details.
 
 
 
 
 [Nikita Komarov]: https://github.com/glazastyi/
+[Ivan Shkurak]: https://github.com/shkurak
+[Alexandra Minochkina]: https://github.com/AlexandraMinochkina
 [license]: LICENSE
 
 [Telegram Chat]: https://t.me/altcointradinbot
