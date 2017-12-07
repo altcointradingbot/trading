@@ -32,6 +32,6 @@ Copyright © 2017 [Nikita Komarov], [Ivan Shkurak], [Alexandra Minochkina]. See 
 [Telegram Chat]: https://t.me/altcointradinbot
 [telegram-image]: https://img.shields.io/badge/chat%20on-Telegram-blue.svg
 [travis-url]: https://travis-ci.org/altcointradingbot/trading
-[travis-badge]: https://travis-ci.orgaltcointradingbot/trading.svg?branch=master
+[travis-badge]: https://travis-ci.org/altcointradingbot/trading.svg?branch=master
 [coverage-image]: https://codecov.io/gh/altcointradingbot/trading/branch/master/graph/badge.svg
 [coverage-url]: https://codecov.io/gh/altcointradingbot/trading
