@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.7
+
 """Setup script."""
 
 from setuptools import setup
