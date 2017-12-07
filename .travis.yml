@@ -1,0 +1,11 @@
+language: python
+python:
+  - 2.7
+before_script:
+  - sudo pip install -r requirements.txt
+install:
+  - pip install codecov
+script:
+  - ./setup.py test
+after_success:
+  - codecov
