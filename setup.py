@@ -14,11 +14,8 @@ setup(
         "tradingbot",
     ],
     install_requires=[
-        "sqlite3",
-        "json",
         "hashlib",
         "hmac",
-        "httplib",
     ],
     setup_requires=[
         "pytest-runner",
