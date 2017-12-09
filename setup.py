@@ -19,7 +19,6 @@ setup(
         "hashlib",
         "hmac",
         "httplib",
-        "urllib"
     ],
     setup_requires=[
         "pytest-runner",
