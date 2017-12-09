@@ -3,6 +3,7 @@ from Sqlite3_API import Sqlite3DB, SqLite3Table
 from tradingbot.Utils.Structures import BufferPair
 import time
 
+
 class BufferTable(SqLite3Table):
 
     def insert(self, order):
@@ -73,7 +74,7 @@ class LivecoinDB(Sqlite3DB):
         return map(lambda x: BufferPair(x[0], x[1], x[2]),
                    self.get_values(base_request))
 
-    def add_to_operations(self,symbol):
+    def add_to_operations(self, symbol):
         print "add to operations {}".format(symbol)
         self.set_values(self.data["add_to_operations"].format(symbol))
         self.set_values(self.data["buy_table"]["delete"].format(symbol))

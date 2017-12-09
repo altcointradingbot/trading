@@ -3,6 +3,7 @@ import tradingbot.ExchangersAPI.livecoin_api as api
 from tradingbot.Databases.livecoin_warehouse import LivecoinDB
 from tradingbot.ThirdParty.third_party import get_data_dir2
 
+
 class LivecoinExchanger(object):
 
     def __init__(self):
@@ -25,7 +26,6 @@ class LivecoinExchanger(object):
     def get_current_pairs(self):
         return self.DB.get_current_pairs()
 
-
     def get_opened_orders(self):
         return self.opened_orders
 
@@ -36,7 +36,6 @@ class LivecoinExchanger(object):
         self.opened_orders = {"sell": [], "buy": []}
         with open(get_data_dir2() + "livecoin.txt", "w") as file:
             file.write("")
-
 
     def get_successfull_orders(self):
         self.update_opened_orders()
@@ -72,16 +71,16 @@ class LivecoinExchanger(object):
         for pair in pairs_to_buy:
             order = api.post_exchange_buy_limit(pair.symbol, pair.price,
                                                 pair.quantity)
-            print("make_buy_order ",order)
+            print("make_buy_order ", order)
             self.append_opened_order("buy", order.orderId)
 
     def get_orders(self):
-        with open(get_data_dir2()+"livecoin.txt", "r") as file:
-            [self.append_opened_order(row.split()[0],int(row.split()[1]))
+        with open(get_data_dir2() + "livecoin.txt", "r") as file:
+            [self.append_opened_order(row.split()[0], int(row.split()[1]))
              for row in file.readlines()]
 
     def set_orders(self):
-        with open(get_data_dir2()+"livecoin.txt", "w") as file:
+        with open(get_data_dir2() + "livecoin.txt", "w") as file:
             for key in self.opened_orders.keys():
                 for order in self.opened_orders[key]:
                     print order

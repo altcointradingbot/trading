@@ -8,7 +8,8 @@ class Sqlite3DB(object):
 
     def __init__(self, db_name):
         self.db_name = db_name
-        self.config = "/".join([get_config_dir(), "DB_tables_description.json"])
+        self.config = "/".join([get_config_dir(),
+                                "DB_tables_description.json"])
         self.way = get_data_dir(self.db_name)
         self.data = None
         with open(self.config) as config:

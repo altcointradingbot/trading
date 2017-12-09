@@ -26,7 +26,6 @@ def get_data(method, *args):
 
     secret_key = keys[1]
 
-
     data = OrderedDict(args)
 
     encoded_data = urllib.urlencode(data)
@@ -175,7 +174,8 @@ def get_exchange_order(order_id):
 def get_payment_balances(*args):
     result = get_data("/payment/balances", *args)
 
-    Payment_balances = namedtuple("Payment_balances", get_namedtuple(result[0]))
+    Payment_balances = namedtuple(
+        "Payment_balances", get_namedtuple(result[0]))
 
     return map(lambda x: Payment_balances(**x), result)
 
