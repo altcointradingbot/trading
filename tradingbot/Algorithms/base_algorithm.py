@@ -9,6 +9,7 @@ from tradingbot.ThirdParty.third_party import get_config_dir
 class BaseAlghoritm(object):
     """Это базовый алгоритм торговли на криптовалютных биржах
     """
+
     def __init__(self, exchanger, decider, config_file):
         """
         Инициализация параметров алгоритма
@@ -33,7 +34,7 @@ class BaseAlghoritm(object):
         self._start_pair = data["START_PAIR"]
 
         self._decider = decider(self._exclusion_currency, self._commission,
-                                 100 * self._satoshi, self._start_pair,
+                                100 * self._satoshi, self._start_pair,
                                 self._number_of_pairs, self._income)
 
     def close_orders(self):
@@ -45,6 +46,7 @@ class BaseAlghoritm(object):
         self._exchanger.update_orders()
         self._exchanger.add_to_operations()
         self._exchanger.close_orders()
+
     def sell_pairs(self):
         """
         Функция с помощью модуля принятия решений вычисляет валютные пары
@@ -71,9 +73,6 @@ class BaseAlghoritm(object):
                                                       all_pairs, current_pairs)
 
         self._exchanger.make_buy_orders(pairs_to_buy)
-
-
-
 
     def run(self):
         """
