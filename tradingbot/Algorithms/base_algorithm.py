@@ -7,18 +7,8 @@ from tradingbot.ThirdParty.third_party import get_config_dir
 
 
 class BaseAlghoritm(object):
-    """Это базовый алгоритм торговли на криптовалютных биржах
-    """
-
     def __init__(self, exchanger, decider, config_file):
-        """
-        Инициализация параметров алгоритма
-        :param exchanger: Биржа на которой торгует данный алгоритм
-        :param decider: Модуль который принимает решения
-        :param config_file: конфигурационный файл
-        """
         self._exchanger = exchanger
-
         self.config_file = os.path.join(get_config_dir(), config_file)
         with open(self.config_file) as config:
             data = json.load(config)
@@ -38,32 +28,18 @@ class BaseAlghoritm(object):
                                 self._number_of_pairs, self._income)
 
     def close_orders(self):
-        """
-        Функция закрытия открытых на бирже ордеров
-        :return: None
-        """
         print "close orders"
         self._exchanger.update_orders()
         self._exchanger.add_to_operations()
         self._exchanger.close_orders()
 
     def sell_pairs(self):
-        """
-        Функция с помощью модуля принятия решений вычисляет валютные пары
-        пригодные для продажи и выставляет ордера на их продажу
-        :return:
-        """
         print "sell pairs"
         current_pairs = self._exchanger.get_current_pairs()
         pairs_to_sell = self._decider.get_sell_solution(current_pairs)
         self._exchanger.make_sell_orders(pairs_to_sell)
 
     def buy_pairs(self):
-        """
-        Функция с помощью модуля принятия решений вычисляет наиболее выгодные
-        для покупки валютные пары и выставляет ордера на их покупку
-        :return: None
-        """
         print "buy pairs"
         all_pairs = self._exchanger.get_pairs()
         balance = self._exchanger.get_btc_balance()
@@ -75,10 +51,6 @@ class BaseAlghoritm(object):
         self._exchanger.make_buy_orders(pairs_to_buy)
 
     def run(self):
-        """
-        Работа алгоритма
-        :return:
-        """
         while True:
             print "start"
             self._exchanger.get_orders()
@@ -87,5 +59,5 @@ class BaseAlghoritm(object):
             self.buy_pairs()
             self._exchanger.set_orders()
 
-            print" finish"
+            print " finish"
             time.sleep(self._period)
