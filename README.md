@@ -1,8 +1,9 @@
 # Altcoin Trading bot
 ### it's not even a MVP
-[![Telegram Chat][telegram-image]][Telegram Chat]
+
 [![Build Status][travis-badge]][travis-url]
 [![Coverage][coverage-image]][coverage-url]
+[![Telegram Chat][telegram-image]][Telegram Chat]
 
 Altcoin trading bot.
 [Read the Docs](https://github.com/altcointradingbot/trading/docs).
