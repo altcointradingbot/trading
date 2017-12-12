@@ -6,6 +6,8 @@ from tradingbot.ThirdParty.third_party import get_data_dir2
 
 class LivecoinExchanger(object):
     # pylint: disable=consider-iterating-dictionary
+    # pylint: disable=no-member
+    # pylint: disable=deprecated-lambda
     def __init__(self):
         self.opened_orders = {"sell": [], "buy": []}
         self.db = LivecoinDB()
@@ -74,10 +76,10 @@ class LivecoinExchanger(object):
             self.append_opened_order("buy", order.orderId)
 
     def get_orders(self):
-        with open(get_data_dir2() + "livecoin.txt", "r") as file:
+        with open(get_data_dir2() + "livecoin.txt", "r") as input_file:
             map(lambda row: self.append_opened_order(row.split()[0],
                                                      int(row.split()[1])),
-                file.readlines())
+                input_file.readlines())
 
     def set_orders(self):
         with open(get_data_dir2() + "livecoin.txt", "w") as input_file:

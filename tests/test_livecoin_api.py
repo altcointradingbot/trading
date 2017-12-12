@@ -13,7 +13,6 @@ from tradingbot.ExchangersAPI.livecoin_api import get_payment_balance
 from tradingbot.ExchangersAPI.livecoin_api import get_exchange_commission
 
 
-
 class TestLivecoinApi(unittest.TestCase):
 
     def test_get_exchange_ticker(self):

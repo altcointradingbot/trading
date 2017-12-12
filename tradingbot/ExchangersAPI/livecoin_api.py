@@ -5,10 +5,10 @@ import httplib
 import json
 import time
 import urllib
-import tradingbot.ThirdParty.third_party
-
 from collections import OrderedDict
 from collections import namedtuple
+import tradingbot.ThirdParty.third_party
+
 # pylint: disable=redefined-outer-nam
 API_URl = "api.livecoin.net"
 
@@ -66,7 +66,7 @@ def post_data(method, *args):
 
 def get_exchange_ticker(*args):
     result = get_data("/exchange/ticker", *args)
-    if  args:
+    if args:
         result = [result]
 
     exchange_ticker = namedtuple("Exchange_ticker", get_namedtuple(result[0]))
@@ -75,7 +75,6 @@ def get_exchange_ticker(*args):
 
 
 def get_exchange_last_trades(currency_pair, *args):
-
     result = get_data("/exchange/last_trades", ("currencyPair",
                                                 currency_pair), *args)
 
@@ -213,7 +212,6 @@ def get_exchange_commission():
 
 
 def get_exchange_commission_common_info():
-
     result = get_data("/exchange/commissionCommonInfo", )
     exchange_commission_common_info = namedtuple("Payment_history_transactions",
                                                  get_namedtuple(result))
@@ -226,43 +224,43 @@ def post_exchange_buy_limit(currency_pair, price, quantity):
     result = post_data("/exchange/buylimit", ("currencyPair", currency_pair),
                        ("price", price), ("quantity", quantity))
 
-    post_exchange_buy_limit = namedtuple("Post_exchange_buylimit",
-                                         get_namedtuple(result))
+    exchange_buy_limit = namedtuple("exchange_buy_limit",
+                                    get_namedtuple(result))
 
-    return post_exchange_buy_limit(**result)
+    return exchange_buy_limit(**result)
 
 
 def post_exchange_sell_limit(currency_pair, price, quantity):
     result = post_data("/exchange/selllimit", ("currencyPair", currency_pair),
                        ("price", price), ("quantity", quantity))
-    post_exchange_sell_limit = namedtuple("Post_exchange_buylimit",
-                                          get_namedtuple(result))
+    exchange_sell_limit = namedtuple("exchange_sell_limit",
+                                     get_namedtuple(result))
 
-    return post_exchange_sell_limit(**result)
+    return exchange_sell_limit(**result)
 
 
 def post_exchange_buy_market(currency_pair, quantity):
     result = post_data("/exchange/buymarket", ("currencyPair", currency_pair),
                        ("quantity", quantity))
-    post_exchange_buy_market = namedtuple("Post_exchange_buylimit",
-                                          get_namedtuple(result))
+    exchange_buy_market = namedtuple("exchange_buy_market",
+                                     get_namedtuple(result))
 
-    return post_exchange_buy_market(**result)
+    return exchange_buy_market(**result)
 
 
 def post_exchange_sell_market(currency_pair, quantity):
     result = post_data("/exchange/sellmarket", ("currencyPair", currency_pair),
                        ("quantity", quantity))
-    post_exchange_sell_market = namedtuple("Post_exchange_sellmarket",
-                                           get_namedtuple(result))
+    exchange_sell_market = namedtuple("exchange_sell_market",
+                                      get_namedtuple(result))
 
-    return post_exchange_sell_market(**result)
+    return exchange_sell_market(**result)
 
 
 def post_exchange_cancel_limit(currency_pair, order_id):
     result = post_data("/exchange/cancellimit", ("currencyPair", currency_pair),
                        ("orderId", order_id))
-    post_exchange_cancel_limit = namedtuple("Post_exchange_cancellimit",
-                                            get_namedtuple(result))
+    exchange_cancel_limit = namedtuple("exchange_cancel_limit",
+                                       get_namedtuple(result))
 
-    return post_exchange_cancel_limit(**result)
+    return exchange_cancel_limit(**result)
