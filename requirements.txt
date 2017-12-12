@@ -1,2 +1,2 @@
-setuptools==36.5.0.post20170921
+setuptools==36.5.0
 pandas==0.20.3
