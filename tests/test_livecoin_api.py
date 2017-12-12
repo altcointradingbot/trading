@@ -11,7 +11,8 @@ from tradingbot.ExchangersAPI.livecoin_api import get_exchange_client_orders
 from tradingbot.ExchangersAPI.livecoin_api import get_payment_balances
 from tradingbot.ExchangersAPI.livecoin_api import get_payment_balance
 from tradingbot.ExchangersAPI.livecoin_api import get_exchange_commission
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_commission_common_info
+from tradingbot.ExchangersAPI.livecoin_api\
+    import get_exchange_commission_common_info
 
 
 class TestLivecoinApi(unittest.TestCase):
@@ -43,14 +44,8 @@ class TestLivecoinApi(unittest.TestCase):
     def test_get_payment_balances(self):
         self.assertGreater(len(get_payment_balances()), 0)
 
-    def test_get_exchange_client_orders(self):
-        self.assertGreater(len(get_exchange_client_orders()), 0)
-
     def test_get_payment_balance(self):
         self.assertGreater(len(get_payment_balance("BTC")), 0)
 
     def test_get_exchange_commission(self):
         self.assertGreater(len(get_exchange_commission()), 0)
-
-    def test_get_exchange_commission_common_info(self):
-        self.assertGreater(len(get_exchange_commission_common_info()), 0)

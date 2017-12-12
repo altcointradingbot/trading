@@ -4,12 +4,13 @@ from tradingbot.ExchangersAPI.livecoin_api import get_exchange_ticker
 
 SATOSHI = 0.00000001
 
+
 class SimpleDecider(object):
     # pylint: disable=too-many-instance-attributes
     def __init__(self, data):
         self.exclusion_currency = data["EXCLUSION_CURRENCY"]
         self.comission = data["COMMISSION"]
-        self.min_bid = 100*SATOSHI
+        self.min_bid = 100 * SATOSHI
         self.start_pair = data["START_PAIR"]
         self.max_number_of_pairs = data["NUMBER_OF_PAIRS"]
         self.income = data["INCOME"]
@@ -31,8 +32,8 @@ class SimpleDecider(object):
 
             result = [BufferPair(element.symbol,
                                  element.best_bid + (10 ** (-7)),
-                                self.get_quantity(element))
-                      for element in  correct_pairs]
+                                 self.get_quantity(element))
+                      for element in correct_pairs]
 
             for element in result:
                 print "decide to buy", element.symbol, element.quantity
@@ -66,7 +67,7 @@ class SimpleDecider(object):
         correct_pairs = [element for element in pairs
                          if element.symbol not in current_symbols and
                          element.symbol not in self.exclusion_currency and
-                         float(element.best_ask)/
+                         float(element.best_ask) /
                          float(element.best_bid) < 1.5]
 
         end_pair = self.start_pair + self.number_of_pairs
@@ -87,7 +88,8 @@ class SimpleDecider(object):
 
             if (cur_value.best_ask >= pair.price * self.income or
                     cur_value.best_ask / pair.price < 0.5) and \
-                    (cur_value.best_ask - 10 ** (-7)) * pair.quantity > 10 ** (-4):
+                    (cur_value.best_ask - 10 ** (-7)) * \
+                pair.quantity > 10 ** (-4):
                 result.append(BufferPair(pair.symbol,
                                          cur_value.best_ask - 10 ** (-7),
                                          pair.quantity))
