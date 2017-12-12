@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from Sqlite3_API import Sqlite3DB, SqLite3Table
-from tradingbot.Utils.Structures import BufferPair
 import time
+from tradingbot.Databases.Sqlite3_API import Sqlite3DB, SqLite3Table
+from tradingbot.Utils.Structures import BufferPair
+
 
 
 class BufferTable(SqLite3Table):
@@ -65,14 +66,14 @@ class LivecoinDB(Sqlite3DB):
 
     def get_buy_pairs(self):
         base_request = self.data["get_buy_pairs"]
-        return map(lambda x: BufferPair(x[0], x[1], x[2]),
-                   self.get_values(base_request))
+        return [BufferPair(x[0], x[1], x[2]) for x in
+                   self.get_values(base_request)]
 
     def get_current_pairs(self):
         base_request = self.data["get_current_pairs"]
         print "get cur pairs"
-        return map(lambda x: BufferPair(x[0], x[1], x[2]),
-                   self.get_values(base_request))
+        return [BufferPair(x[0], x[1], x[2]) for x in
+                   self.get_values(base_request)]
 
     def add_to_operations(self, symbol):
         print "add to operations {}".format(symbol)

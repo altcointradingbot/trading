@@ -2,7 +2,6 @@
 import json
 import os
 import time
-
 from tradingbot.ThirdParty.third_party import get_config_dir
 
 
@@ -12,20 +11,12 @@ class BaseAlghoritm(object):
         self.config_file = os.path.join(get_config_dir(), config_file)
         with open(self.config_file) as config:
             data = json.load(config)
-        self._api_url = data["API_URl"]
-        self._satoshi = data["SATOSHI"]
-        self._number_of_pairs = data["NUMBER_OF_PAIRS"]
-        self._income = data["INCOME"]
-        self._max_waiting_time = data["MAX_WAITING_TIME"]
-        self._commission = data["COMMISSION"]
-        self._over_burse = data["OVER_BURSE"]
-        self._exclusion_currency = data["EXCLUSION_CURRENCY"]
-        self._period = data["PERIOD"]
-        self._start_pair = data["START_PAIR"]
 
-        self._decider = decider(self._exclusion_currency, self._commission,
-                                100 * self._satoshi, self._start_pair,
-                                self._number_of_pairs, self._income)
+        self._api_url = data["API_URl"]
+        self._max_waiting_time = data["MAX_WAITING_TIME"]
+        self._over_burse = data["OVER_BURSE"]
+        self._period = data["PERIOD"]
+        self._decider = decider(data)
 
     def close_orders(self):
         print "close orders"

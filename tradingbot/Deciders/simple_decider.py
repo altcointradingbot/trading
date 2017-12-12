@@ -2,17 +2,17 @@
 from tradingbot.Utils.Structures import BufferPair
 from tradingbot.ExchangersAPI.livecoin_api import get_exchange_ticker
 
+SATOSHI = 0.00000001
 
 class SimpleDecider(object):
 
-    def __init__(self, exclusion_currency, comission, min_bid,
-                 start_pair, max_number_of_pairs, income):
-        self.exclusion_currency = exclusion_currency
-        self.comission = comission
-        self.min_bid = min_bid
-        self.start_pair = start_pair
-        self.max_number_of_pairs = max_number_of_pairs
-        self.income = income
+    def __init__(self, data):
+        self.exclusion_currency = data["EXCLUSION_CURRENCY"]
+        self.comission = data["COMMISSION"]
+        self.min_bid = 100*SATOSHI
+        self.start_pair = data["START_PAIR"]
+        self.max_number_of_pairs = data["NUMBER_OF_PAIRS"]
+        self.income = data["INCOME"]
         self.number_of_pairs = None
         self.balance = None
         self.small_balance = None
@@ -29,8 +29,10 @@ class SimpleDecider(object):
             self.set_small_balance()
             correct_pairs = self.get_correct_pairs()
 
-            result = map(lambda x: BufferPair(x.symbol, x.best_bid + (10 ** (-7)),
-                                              self.get_quantity(x)), correct_pairs)
+            result = [BufferPair(element.symbol, element.best_bid + (10 ** (-7)),
+                                              self.get_quantity(element))
+                      for element in  correct_pairs]
+
             for element in result:
                 print "decide to buy", element.symbol, element.quantity
 
@@ -50,19 +52,19 @@ class SimpleDecider(object):
 
     def get_correct_pairs(self):
 
-        pairs = [el for el in self.all_pairs if
-                 "/BTC" in el.symbol and el.best_bid > self.min_bid]
+        pairs = [element for element in self.all_pairs if
+                 "/BTC" in element.symbol and element.best_bid > self.min_bid]
 
         pairs = sorted(pairs, key=lambda element: get_rank(element),
                        reverse=True)
 
-        current_symbols = [el.symbol for el in self.current_pairs
-                           if el.quantity > 100 * self.min_bid]
+        current_symbols = [element.symbol for element in self.current_pairs
+                           if element.quantity > 100 * self.min_bid]
 
-        correct_pairs = [el for el in pairs
-                         if el.symbol not in current_symbols and
-                         el.symbol not in self.exclusion_currency and
-                         float(el.best_ask) / float(el.best_bid) < 1.5]
+        correct_pairs = [element for element in pairs
+                         if element.symbol not in current_symbols and
+                         element.symbol not in self.exclusion_currency and
+                         float(element.best_ask) / float(element.best_bid) < 1.5]
 
         end_pair = self.start_pair + self.number_of_pairs
 
