@@ -9,7 +9,7 @@ from collections import OrderedDict
 from collections import namedtuple
 import tradingbot.ThirdParty.third_party
 
-# pylint: disable=redefined-outer-nam
+# pylint: disable=invalid-name
 API_URl = "api.livecoin.net"
 
 
@@ -213,7 +213,7 @@ def get_exchange_commission():
 
 def get_exchange_commission_common_info():
     result = get_data("/exchange/commissionCommonInfo", )
-    exchange_commission_common_info = namedtuple("Payment_history_transactions",
+    exchange_commission_common_info = namedtuple("Payment_history",
                                                  get_namedtuple(result))
 
     return exchange_commission_common_info(**result)
@@ -258,7 +258,8 @@ def post_exchange_sell_market(currency_pair, quantity):
 
 
 def post_exchange_cancel_limit(currency_pair, order_id):
-    result = post_data("/exchange/cancellimit", ("currencyPair", currency_pair),
+    result = post_data("/exchange/cancellimit",
+                       ("currencyPair", currency_pair),
                        ("orderId", order_id))
     exchange_cancel_limit = namedtuple("exchange_cancel_limit",
                                        get_namedtuple(result))

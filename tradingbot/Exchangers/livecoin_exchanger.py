@@ -10,7 +10,7 @@ class LivecoinExchanger(object):
     # pylint: disable=deprecated-lambda
     def __init__(self):
         self.opened_orders = {"sell": [], "buy": []}
-        self.db = LivecoinDB()
+        self.database = LivecoinDB()
 
     @staticmethod
     def get_pairs():
@@ -26,7 +26,7 @@ class LivecoinExchanger(object):
         return result
 
     def get_current_pairs(self):
-        return self.db.get_current_pairs()
+        return self.database.get_current_pairs()
 
     def get_opened_orders(self):
         return self.opened_orders
@@ -56,7 +56,7 @@ class LivecoinExchanger(object):
                                        for element in self.opened_orders[key]]
 
     def update_orders(self):
-        self.db.update_orders(self.get_successfull_orders())
+        self.database.update_orders(self.get_successfull_orders())
 
     def append_opened_order(self, mode, order_id):
         self.opened_orders[mode].append(api.get_exchange_order(order_id))
@@ -89,6 +89,6 @@ class LivecoinExchanger(object):
                     input_file.write("{} {}\n".format(key, order.id))
 
     def add_to_operations(self):
-        candidats = [el for el in self.db.get_current_pairs()
+        candidats = [el for el in self.database.get_current_pairs()
                      if el.quantity == 0]
-        map(lambda x: self.db.add_to_operations(x.symbol), candidats)
+        map(lambda x: self.database.add_to_operations(x.symbol), candidats)
