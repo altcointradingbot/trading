@@ -6,6 +6,8 @@ from tradingbot.ThirdParty.third_party import get_config_dir
 
 
 class BaseAlghoritm(object):
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, exchanger, decider, config_file):
         self._exchanger = exchanger
         self.config_file = os.path.join(get_config_dir(), config_file)

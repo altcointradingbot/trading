@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import time
-from tradingbot.Databases.Sqlite3_API import Sqlite3DB, SqLite3Table
+from tradingbot.Databases.sqlite3_api import Sqlite3DB, Sqlite3Table
 from tradingbot.Utils.Structures import BufferPair
 
 
 
-class BufferTable(SqLite3Table):
+class BufferTable(Sqlite3Table):
 
     def insert(self, order):
         base_request = self.data[self.table_name]["insert"]
@@ -26,7 +26,7 @@ class BufferTable(SqLite3Table):
         self.set_values(request)
 
 
-class OperationsTable(SqLite3Table):
+class OperationsTable(Sqlite3Table):
 
     def insert(self, *args):
         base_request = self.data[self.table_name]["insert"]

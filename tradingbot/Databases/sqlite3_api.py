@@ -39,7 +39,7 @@ class Sqlite3DB(object):
         self.set_values(create_request)
 
 
-class SqLite3Table(Sqlite3DB):
+class Sqlite3Table(Sqlite3DB):
     def __init__(self, db_name, table_name):
         Sqlite3DB.__init__(self, db_name)
         self.table_name = table_name

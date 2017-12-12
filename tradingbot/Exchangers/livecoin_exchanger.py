@@ -5,10 +5,10 @@ from tradingbot.ThirdParty.third_party import get_data_dir2
 
 
 class LivecoinExchanger(object):
-
+    # pylint: disable=consider-iterating-dictionary
     def __init__(self):
         self.opened_orders = {"sell": [], "buy": []}
-        self.DB = LivecoinDB()
+        self.db = LivecoinDB()
 
     @staticmethod
     def get_pairs():
@@ -24,7 +24,7 @@ class LivecoinExchanger(object):
         return result
 
     def get_current_pairs(self):
-        return self.DB.get_current_pairs()
+        return self.db.get_current_pairs()
 
     def get_opened_orders(self):
         return self.opened_orders
@@ -34,8 +34,8 @@ class LivecoinExchanger(object):
             api.post_exchange_cancel_limit(order.symbol, order.id)
 
         self.opened_orders = {"sell": [], "buy": []}
-        with open(get_data_dir2() + "livecoin.txt", "w") as file:
-            file.write("")
+        with open(get_data_dir2() + "livecoin.txt", "w") as input_file:
+            input_file.write("")
 
     def get_successfull_orders(self):
         self.update_opened_orders()
@@ -50,15 +50,14 @@ class LivecoinExchanger(object):
 
     def update_opened_orders(self):
         for key in self.opened_orders.keys():
-            self.opened_orders[key] = map(lambda x:
-                                          api.get_exchange_order(x.id),
-                                          self.opened_orders[key])
+            self.opened_orders[key] = [api.get_exchange_order(element.id)
+                                       for element in self.opened_orders[key]]
 
     def update_orders(self):
-        self.DB.update_orders(self.get_successfull_orders())
+        self.db.update_orders(self.get_successfull_orders())
 
-    def append_opened_order(self, mode, orderId):
-        self.opened_orders[mode].append(api.get_exchange_order(orderId))
+    def append_opened_order(self, mode, order_id):
+        self.opened_orders[mode].append(api.get_exchange_order(order_id))
 
     def make_sell_orders(self, pairs_to_sell):
         for pair in pairs_to_sell:
@@ -76,17 +75,17 @@ class LivecoinExchanger(object):
 
     def get_orders(self):
         with open(get_data_dir2() + "livecoin.txt", "r") as file:
-            [self.append_opened_order(row.split()[0], int(row.split()[1]))
-             for row in file.readlines()]
+            map(lambda row: self.append_opened_order(row.split()[0], int(row.split()[1])),
+            file.readlines())
 
     def set_orders(self):
-        with open(get_data_dir2() + "livecoin.txt", "w") as file:
+        with open(get_data_dir2() + "livecoin.txt", "w") as input_file:
             for key in self.opened_orders.keys():
                 for order in self.opened_orders[key]:
                     print order
-                    file.write("{} {}\n".format(key, order.id))
+                    input_file.write("{} {}\n".format(key, order.id))
 
     def add_to_operations(self):
-        candidats = [el for el in self.DB.get_current_pairs()
+        candidats = [el for el in self.db.get_current_pairs()
                      if el.quantity == 0]
-        map(lambda x: self.DB.add_to_operations(x.symbol), candidats)
+        map(lambda x: self.db.add_to_operations(x.symbol), candidats)

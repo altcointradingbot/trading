@@ -5,7 +5,7 @@ from tradingbot.ExchangersAPI.livecoin_api import get_exchange_ticker
 SATOSHI = 0.00000001
 
 class SimpleDecider(object):
-
+    # pylint: disable=too-many-instance-attributes
     def __init__(self, data):
         self.exclusion_currency = data["EXCLUSION_CURRENCY"]
         self.comission = data["COMMISSION"]
@@ -29,8 +29,9 @@ class SimpleDecider(object):
             self.set_small_balance()
             correct_pairs = self.get_correct_pairs()
 
-            result = [BufferPair(element.symbol, element.best_bid + (10 ** (-7)),
-                                              self.get_quantity(element))
+            result = [BufferPair(element.symbol,
+                                 element.best_bid + (10 ** (-7)),
+                                self.get_quantity(element))
                       for element in  correct_pairs]
 
             for element in result:
@@ -42,7 +43,8 @@ class SimpleDecider(object):
         self.small_balance = self.balance / self.number_of_pairs - 10 ** (-8)
 
     def get_quantity(self, pair):
-        return self.small_balance / ((pair.best_bid + 10 ** (-7)) * (1 + self.comission))
+        return self.small_balance / ((pair.best_bid + 10 ** (-7))
+                                     * (1 + self.comission))
 
     def set_number_of_pairs(self):
         result = self.max_number_of_pairs
@@ -64,7 +66,8 @@ class SimpleDecider(object):
         correct_pairs = [element for element in pairs
                          if element.symbol not in current_symbols and
                          element.symbol not in self.exclusion_currency and
-                         float(element.best_ask) / float(element.best_bid) < 1.5]
+                         float(element.best_ask)/
+                         float(element.best_bid) < 1.5]
 
         end_pair = self.start_pair + self.number_of_pairs
 
@@ -91,11 +94,11 @@ class SimpleDecider(object):
         return result
 
 
-def get_rank(el):
-    return ((float(el.best_ask) / float(el.best_bid) - 1)
-            * float(el.volume) * float(el.vwap))
+def get_rank(element):
+    return ((float(element.best_ask) / float(element.best_bid) - 1)
+            * float(element.volume) * float(element.vwap))
 
 
-def set_buy_price(x):
+def set_buy_price(element):
 
-    return x.best_bid + 10 ** (-7)
+    return element.best_bid + 10 ** (-7)
