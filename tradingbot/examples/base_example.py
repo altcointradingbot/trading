@@ -5,7 +5,7 @@ from tradingbot.Deciders.simple_decider import SimpleDecider
 
 
 worker = BaseAlghoritm(LivecoinExchanger(),
-                        SimpleDecider,
-                        "livecoin_config.json")
+                       SimpleDecider,
+                       "livecoin_config.json")
 
 worker.run()
