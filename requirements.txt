@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 setuptools==36.5.0.post20170921
+=======
+setuptools==36.5.0
+>>>>>>> a8b714d690882b9a6f58de7f198da28f9f11307e
 pandas==0.20.3
