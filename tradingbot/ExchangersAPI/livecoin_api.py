@@ -18,11 +18,6 @@ def get_namedtuple(result):
 
 
 def get_data(method, *args):
-    """
-    :param method: 
-    :param args: 
-    :return: 
-    """
     time.sleep(1)
 
     server = API_URl
@@ -30,7 +25,6 @@ def get_data(method, *args):
     api_key = keys[0]
 
     secret_key = keys[1]
-
 
     data = OrderedDict(args)
 
@@ -49,12 +43,6 @@ def get_data(method, *args):
 
 
 def post_data(method, *args):
-    """
-
-    :param method: 
-    :param args: 
-    :return: 
-    """
     time.sleep(1)
     server = API_URl
     keys = tradingbot.ThirdParty.third_party.get_keys()
@@ -77,14 +65,6 @@ def post_data(method, *args):
 
 
 def get_exchange_ticker(*args):
-    """
-    Получить информацию за последние 24 часа по конкретной паре валют.
-    В ответе есть следующие поля:
-        max_bid, min_ask - макс бид и мин аск за последние 24 часа
-        best_bid, best_ask - лучшие текущие бид и аск
-    :param args: 
-    :return: 
-    """
     result = get_data("/exchange/ticker", *args)
     if len(args):
         result = [result]
@@ -95,14 +75,6 @@ def get_exchange_ticker(*args):
 
 
 def get_exchange_last_trades(currency_pair, *args):
-    """
-    Получить информацию о последних сделках (транзакциях) по заданной паре валют
-    Информацию можно получить либо за последний час либо за последнюю минуту.
-    
-    :param currency_pair: 
-    :param args: 
-    :return: 
-    """
 
     result = get_data("/exchange/last_trades", ("currencyPair",
                                                 currency_pair), *args)
@@ -114,13 +86,6 @@ def get_exchange_last_trades(currency_pair, *args):
 
 
 def get_exchange_order_book(currency_pair, *args):
-    """
-    Получить ордера по выбранной паре (можно установить признак
-     группировки ордеров по ценам)
-    :param currency_pair: 
-    :param args: 
-    :return: 
-    """
     result = get_data("/exchange/order_book", ("currencyPair",
                                                currency_pair), *args)
 
@@ -132,11 +97,6 @@ def get_exchange_order_book(currency_pair, *args):
 
 # problem
 def get_exchange_all_order_book(*args):
-    """
-    Возвращает ордербук по каждой валютной паре
-    :param args: 
-    :return: 
-    """
     data = get_data("/exchange/all/order_book", *args)
     Exchange_all_order_book = namedtuple("Exchange_order_book",
                                          get_namedtuple(data.values()[0]))
@@ -149,11 +109,6 @@ def get_exchange_all_order_book(*args):
 
 
 def get_exchange_maxbid_minask(*args):
-    """
-    Возвращает максимальный бид и минимальный аск в текущем стакане
-    :param args: 
-    :return: 
-    """
     data = get_data("/exchange/maxbid_minask", *args)
     currency_pairs = data.get("currencyPairs")[0]
     Exchange_maxbid_minask = namedtuple("Exchange_maxbid_minask",
@@ -175,25 +130,6 @@ def get_exchange_restrictions(*args):
 
 
 def get_info_coin_info(*args):
-    """
-    возвращает общую информацию по критовалютам:
-        db_name - название
-        symbol - символ
-        walletStatus - статус кошелька
-        normal - Кошелек работает нормально
-        delayed - Кошелек задерживается (нет нового блока 1-2 часа)
-        blocked - Кошелек не синхронизирован (нет нового блока минимум 2 часа)
-        blocked_long - Последний блок получен более 24 ч. назад
-        down - Кошелек временно выключен
-        delisted - Монета будет удалена с биржи, заберите свои средства
-        closed_cashin - Разрешен только вывод
-        closed_cashout - Разрешен только ввод
-        withdrawFee - комиссия вывод
-        minDepositAmount - мин. сумма пополнения
-        minWithdrawAmount - мин. сумма вывода
-    :param args: 
-    :return: 
-    """
     data = get_data("/info/coinInfo", *args)
     info = data.get("info")
     Info_coin_info = namedtuple("Info_coin_info", get_namedtuple(info[0]))
@@ -206,13 +142,6 @@ def get_info_coin_info(*args):
 
 
 def get_exchange_trades(*args):
-    """
-    По конкретному клиенту получить информацию о его последних сделках,
-     результат может быть ограничен, соответствующими параметрами.
-    :param args: 
-    :return: 
-    """
-
     result = get_data("/exchange/trades", *args)
     if len(args):
         result = [result]
@@ -225,14 +154,6 @@ def get_exchange_trades(*args):
 
 # сложно взаимодействие с системой
 def get_exchange_client_orders(*args):
-    """
-    По конкретному клиенту и по конкретной паре валют получить полную информацию
-     о его ордерах, информация может быть ограничена
-     либо только открытые либо только закрытые ордера.
-    :param args: 
-    :return: 
-    """
-
     data = get_data("/info/coinInfo", *args)
     info = data.get("info")
     Exchange_client_orders = namedtuple("Exchange_client_orders",
@@ -243,12 +164,6 @@ def get_exchange_client_orders(*args):
 
 
 def get_exchange_order(order_id):
-    """
-    Получить информацию об ордере по его ID
-    :param order_id: 
-    :return: 
-    """
-    #todo:костыль на костыле
     result = get_data("/exchange/order", ("orderId", order_id))
 
     Exchange_order = namedtuple("Exchange_order", get_namedtuple(result))
@@ -257,28 +172,15 @@ def get_exchange_order(order_id):
 
 
 def get_payment_balances(*args):
-    """
-    Возвращает массив с балансами пользователя. Для каждой валюты существует
-    4 типа балансов: общий (total),
-    доступные для торговли средства (available),
-    средства в открытых ордерах (trade),
-    доступный для вывода (available_withdrawal)
-    :param args: 
-    :return: 
-    """
     result = get_data("/payment/balances", *args)
 
-    Payment_balances = namedtuple("Payment_balances", get_namedtuple(result[0]))
+    Payment_balances = namedtuple(
+        "Payment_balances", get_namedtuple(result[0]))
 
     return map(lambda x: Payment_balances(**x), result)
 
 
 def get_payment_balance(currency):
-    """
-    Возвращает доступный баланс для выбранной валюты
-    :param currency: 
-    :return: 
-    """
     result = get_data("/payment/balances", ("currency", currency))
     Payment_balance = namedtuple("Payment_balance", get_namedtuple(result[0]))
 
@@ -286,12 +188,6 @@ def get_payment_balance(currency):
 
 
 def get_payment_history_transactions(start, end, *args):
-    """
-    Возвращает список транзакций пользователя
-    :param start: 
-    :param end: 
-    :return: 
-    """
     result = get_data(" /payment/history/transactions", ("start", start),
                       ("end", end), *args)
 
@@ -302,23 +198,12 @@ def get_payment_history_transactions(start, end, *args):
 
 
 def get_payment_history_size(start, end, *args):
-    """
-    Возвращает количество транзакций пользователя с заданными параметрами
-    :param start: 
-    :param end: 
-    :param args: 
-    :return: 
-    """
     result = get_data(" /payment/history/transactions", ("start", start),
                       ("end", end), *args)
     return result
 
 
 def get_exchange_commission():
-    """
-    Возвращает текущую комиссию пользователя
-    :return: 
-    """
     result = get_data("/exchange/commission", )
 
     Payment_history_transactions = namedtuple("Payment_history_transactions",
@@ -328,11 +213,6 @@ def get_exchange_commission():
 
 
 def get_exchange_commission_common_info():
-    """
-    Возвращает текущую комиссию пользователя
-     и объем торгов в USD за последние 30 дней
-    :return: 
-    """
 
     result = get_data("/exchange/commissionCommonInfo", )
     Exchange_commission_common_info = namedtuple("Payment_history_transactions",
@@ -342,13 +222,6 @@ def get_exchange_commission_common_info():
 
 
 def post_exchange_buy_limit(currency_pair, price, quantity):
-    """
-    Открыть ордер (лимитный) на покупку, определенной валюты.
-    :param currency_pair: 
-    :param price: 
-    :param quantity: 
-    :return: 
-    """
     print currency_pair, price, quantity
     result = post_data("/exchange/buylimit", ("currencyPair", currency_pair),
                        ("price", price), ("quantity", quantity))
@@ -360,15 +233,6 @@ def post_exchange_buy_limit(currency_pair, price, quantity):
 
 
 def post_exchange_sell_limit(currency_pair, price, quantity):
-    """
-    Открыть ордер (лимитный) на продажу определенной валюты. 
-    Доп.параметры аналогично покупки.
-
-    :param currency_pair: 
-    :param price: 
-    :param quantity: 
-    :return: 
-    """
     result = post_data("/exchange/selllimit", ("currencyPair", currency_pair),
                        ("price", price), ("quantity", quantity))
     Post_exchange_sell_limit = namedtuple("Post_exchange_buylimit",
@@ -378,13 +242,6 @@ def post_exchange_sell_limit(currency_pair, price, quantity):
 
 
 def post_exchange_buy_market(currency_pair, quantity):
-    """
-    Открыть ордер(рыночный)
-     на покупку определенной валюты на заданное количество.
-    :param currency_pair: 
-    :param quantity: 
-    :return: 
-    """
     result = post_data("/exchange/buymarket", ("currencyPair", currency_pair),
                        ("quantity", quantity))
     Post_exchange_buy_market = namedtuple("Post_exchange_buylimit",
@@ -394,14 +251,6 @@ def post_exchange_buy_market(currency_pair, quantity):
 
 
 def post_exchange_sell_market(currency_pair, quantity):
-    """
-    Открыть ордер(рыночный) на продажу определенной
-     валюты на заданное количество.
-    :param currency_pair: 
-    :param quantity: 
-    :return: 
-    """
-
     result = post_data("/exchange/sellmarket", ("currencyPair", currency_pair),
                        ("quantity", quantity))
     Post_exchange_sell_market = namedtuple("Post_exchange_sellmarket",
@@ -411,12 +260,6 @@ def post_exchange_sell_market(currency_pair, quantity):
 
 
 def post_exchange_cancel_limit(currency_pair, order_id):
-    """
-    Отменить ордер (лимитный).
-    :param currency_pair: 
-    :param order_id: 
-    :return: 
-    """
     result = post_data("/exchange/cancellimit", ("currencyPair", currency_pair),
                        ("orderId", order_id))
     Post_exchange_cancel_limit = namedtuple("Post_exchange_cancellimit",
