@@ -75,8 +75,9 @@ class LivecoinExchanger(object):
 
     def get_orders(self):
         with open(get_data_dir2() + "livecoin.txt", "r") as file:
-            map(lambda row: self.append_opened_order(row.split()[0], int(row.split()[1])),
-            file.readlines())
+            map(lambda row: self.append_opened_order(row.split()[0],
+                                                     int(row.split()[1])),
+                file.readlines())
 
     def set_orders(self):
         with open(get_data_dir2() + "livecoin.txt", "w") as input_file:

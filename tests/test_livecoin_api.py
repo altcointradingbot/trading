@@ -11,8 +11,7 @@ from tradingbot.ExchangersAPI.livecoin_api import get_exchange_client_orders
 from tradingbot.ExchangersAPI.livecoin_api import get_payment_balances
 from tradingbot.ExchangersAPI.livecoin_api import get_payment_balance
 from tradingbot.ExchangersAPI.livecoin_api import get_exchange_commission
-from tradingbot.ExchangersAPI.livecoin_api\
-    import get_exchange_commission_common_info
+
 
 
 class TestLivecoinApi(unittest.TestCase):

@@ -7,6 +7,7 @@ SATOSHI = 0.00000001
 
 class SimpleDecider(object):
     # pylint: disable=too-many-instance-attributes
+    # pylint: disable=unnecessary-lambda
     def __init__(self, data):
         self.exclusion_currency = data["EXCLUSION_CURRENCY"]
         self.comission = data["COMMISSION"]
@@ -89,7 +90,7 @@ class SimpleDecider(object):
             if (cur_value.best_ask >= pair.price * self.income or
                     cur_value.best_ask / pair.price < 0.5) and \
                     (cur_value.best_ask - 10 ** (-7)) * \
-                pair.quantity > 10 ** (-4):
+                    pair.quantity > 10 ** (-4):
                 result.append(BufferPair(pair.symbol,
                                          cur_value.best_ask - 10 ** (-7),
                                          pair.quantity))
