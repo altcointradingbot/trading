@@ -68,8 +68,8 @@ def get_exchange_ticker(*args):
     """
     To retrieve information on a particular currency pair for the last 24 hours. 
     There are the following fields in the response:
-        •	max_bid, min_ask - maximal bid and minimal ask for the last 24 hours
-        •	best_bid, best_ask - best current bid and ask
+        *	max_bid, min_ask - maximal bid and minimal ask for the last 24 hours
+        *	best_bid, best_ask - best current bid and ask
 
     """
     result = get_data("/exchange/ticker", *args)
@@ -153,20 +153,20 @@ def get_exchange_restrictions(*args):
 def get_info_coin_info(*args):
     """"  
     Returns public data for currencies:
-        •	name - name of cryptocurrency
-        •	symbol - trading symbol of cryptocurrency
-        •	walletStatus - actual status of the wallet:
-            o	normal - Wallet online
-            o	delayed - No new block for 1-2 hours
-            o	blocked - Out of sync (no new block for at least 2 hours)
-            o	blocked_long - No new block for at least 24h (Out of sync)
-            o	down - Wallet temporary offline or in maintenance
-            o	delisted - Coin will be delisted soon, withdraw your funds.
-            o	closed_cashin - Only withdrawal is available
-            o	closed_cashout - Only deposit is available
-        •	withdrawFee - fee for outgoing transactions
-        •	minDepositAmount - minimum amount for deposit
-        •	minWithdrawAmount - minimum amount for withdrawal
+        *	name - name of cryptocurrency
+        *	symbol - trading symbol of cryptocurrency
+        *	walletStatus - actual status of the wallet:
+            **	normal - Wallet online
+            **	delayed - No new block for 1-2 hours
+            **	blocked - Out of sync (no new block for at least 2 hours)
+            **	blocked_long - No new block for at least 24h (Out of sync)
+            **	down - Wallet temporary offline or in maintenance
+            **	delisted - Coin will be delisted soon, withdraw your funds.
+            **	closed_cashin - Only withdrawal is available
+            **	closed_cashout - Only deposit is available
+        *	withdrawFee - fee for outgoing transactions
+        *	minDepositAmount - minimum amount for deposit
+        *	minWithdrawAmount - minimum amount for withdrawal
 
     """"
     data = get_data("/info/coinInfo", *args)
@@ -177,7 +177,7 @@ def get_info_coin_info(*args):
     return result
 
 
-# приватные данные пользователя
+# private user data
 
 
 def get_exchange_trades(*args):
@@ -196,7 +196,7 @@ def get_exchange_trades(*args):
     return [exchange_trades(**element) for element in result]
 
 
-# сложно взаимодействие с системой
+# interaction with the system
 def get_exchange_client_orders(*args):
     """
     To retrieve full information on your trade-orders for the specified currency pair. You can optionally limit the response to orders of a certain type (open, closed, etc.)
