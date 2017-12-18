@@ -3,7 +3,7 @@
 """Setup script."""
 
 from setuptools import setup
-import os
+
 setup(
     name="tradingbot",
     version="0.0.0",
@@ -27,8 +27,10 @@ setup(
         "hashlib",
         "hmac",
     ],
-    package_data={"tradingbot.configs": ["DB_tables_description.json", "keys.txt", "livecoin_config.json"],
-                  "tradingbot.data": ["collectiong.csv", "data.db", "livecoin.db", "livecoin.txt"]},
+    package_data={"tradingbot.configs":
+                    ["DB_tables_description.json", "keys.txt", "livecoin_config.json"],
+                  "tradingbot.data":
+                    ["collectiong.csv", "data.db", "livecoin.db", "livecoin.txt"]},
     include_package_dir=True,
     setup_requires=[
         "pytest-runner",

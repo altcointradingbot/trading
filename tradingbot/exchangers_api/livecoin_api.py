@@ -183,7 +183,7 @@ def get_info_coin_info(*args):
 def get_exchange_trades(*args):
     """
     To retrieve information on your latest transactions. 
-    
+
     This method requires authorization.
     """
     result = get_data("/exchange/trades", *args)
@@ -200,7 +200,7 @@ def get_exchange_trades(*args):
 def get_exchange_client_orders(*args):
     """
     To retrieve full information on your trade-orders for the specified currency pair. You can optionally limit the response to orders of a certain type (open, closed, etc.)
-    
+
     This method requires authorization.
     """
     data = get_data("/info/coinInfo", *args)
@@ -215,7 +215,7 @@ def get_exchange_client_orders(*args):
 def get_exchange_order(order_id):
     """
     To retrieve an order's information by its ID.
-    
+
     This method requires authorization.
 
     """
@@ -229,7 +229,7 @@ def get_exchange_order(order_id):
 def get_payment_balances(*args):
     """
     Returns an array with your balances. There are four types of balances for every currency: total, available (for trading), trade (amount in open orders), available_withdrawal (amount available for withdrawal)
-    
+
     This method requires authorization.
     """
     result = get_data("/payment/balances", *args)
