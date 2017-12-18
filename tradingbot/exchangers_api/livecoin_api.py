@@ -123,9 +123,9 @@ def get_exchange_all_order_book(*args):
 
 
 def get_exchange_maxbid_minask(*args):
-    """"
+    """
     Returns maximum bid and minimum ask in current orderbook
-    """"
+    """
     data = get_data("/exchange/maxbid_minask", *args)
     currency_pairs = data.get("currencyPairs")
     print currency_pairs
@@ -138,9 +138,9 @@ def get_exchange_maxbid_minask(*args):
 
 
 def get_exchange_restrictions(*args):
-    """"
+    """
     Returns limits for minimum amount to open order, for each pair. Also returns maximum number of digits after the decimal point for price.
-    """"
+    """
     data = get_data("/exchange/restrictions", *args)
     restrictions = data.get("restrictions")
     exchange_restrictions = namedtuple("Exchange_restrictions",
@@ -151,7 +151,7 @@ def get_exchange_restrictions(*args):
 
 
 def get_info_coin_info(*args):
-    """"  
+    """  
     Returns public data for currencies:
         *	name - name of cryptocurrency
         *	symbol - trading symbol of cryptocurrency
