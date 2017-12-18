@@ -1,16 +1,16 @@
 import unittest
 
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_ticker
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_last_trades
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_order_book
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_maxbid_minask
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_restrictions
-from tradingbot.ExchangersAPI.livecoin_api import get_info_coin_info
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_trades
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_client_orders
-from tradingbot.ExchangersAPI.livecoin_api import get_payment_balances
-from tradingbot.ExchangersAPI.livecoin_api import get_payment_balance
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_commission
+from tradingbot.exchangers_api.livecoin_api import get_exchange_ticker
+from tradingbot.exchangers_api.livecoin_api import get_exchange_last_trades
+from tradingbot.exchangers_api.livecoin_api import get_exchange_order_book
+from tradingbot.exchangers_api.livecoin_api import get_exchange_maxbid_minask
+from tradingbot.exchangers_api.livecoin_api import get_exchange_restrictions
+from tradingbot.exchangers_api.livecoin_api import get_info_coin_info
+from tradingbot.exchangers_api.livecoin_api import get_exchange_trades
+from tradingbot.exchangers_api.livecoin_api import get_exchange_client_orders
+from tradingbot.exchangers_api.livecoin_api import get_payment_balances
+from tradingbot.exchangers_api.livecoin_api import get_payment_balance
+from tradingbot.exchangers_api.livecoin_api import get_exchange_commission
 
 
 class TestLivecoinApi(unittest.TestCase):

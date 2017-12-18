@@ -1,4 +1,4 @@
-from tradingbot.ThirdParty import third_party
+from tradingbot.third_party import third_party
 
 
 def test_thirdparty():

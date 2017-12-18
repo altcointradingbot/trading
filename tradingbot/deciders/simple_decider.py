@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from tradingbot.Utils.Structures import BufferPair
-from tradingbot.ExchangersAPI.livecoin_api import get_exchange_ticker
+from tradingbot.utils.Structures import BufferPair
+from tradingbot.exchangers_api.livecoin_api import get_exchange_ticker
 
 SATOSHI = 0.00000001
 

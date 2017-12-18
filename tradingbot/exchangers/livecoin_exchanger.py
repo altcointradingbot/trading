@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import tradingbot.ExchangersAPI.livecoin_api as api
-from tradingbot.Databases.livecoin_warehouse import LivecoinDB
-from tradingbot.ThirdParty.third_party import get_data_dir2
+import tradingbot.exchangers_api.livecoin_api as api
+from tradingbot.databases.livecoin_warehouse import LivecoinDB
+from tradingbot.third_party.third_party import get_data_dir2
 
 
 class LivecoinExchanger(object):

@@ -7,7 +7,7 @@ import time
 import urllib
 from collections import OrderedDict
 from collections import namedtuple
-import tradingbot.ThirdParty.third_party
+import tradingbot.third_party.third_party
 
 # pylint: disable=invalid-name
 API_URl = "api.livecoin.net"
@@ -21,7 +21,7 @@ def get_data(method, *args):
     time.sleep(1)
 
     server = API_URl
-    keys = tradingbot.ThirdParty.third_party.get_keys()
+    keys = tradingbot.third_party.third_party.get_keys()
     api_key = keys[0]
 
     secret_key = keys[1]
@@ -45,7 +45,7 @@ def get_data(method, *args):
 def post_data(method, *args):
     time.sleep(1)
     server = API_URl
-    keys = tradingbot.ThirdParty.third_party.get_keys()
+    keys = tradingbot.third_party.third_party.get_keys()
     api_key = keys[0]
     secret_key = keys[1]
 

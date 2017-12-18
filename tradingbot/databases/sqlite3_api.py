@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 import json
-from tradingbot.ThirdParty.third_party import get_data_dir, get_config_dir
+from tradingbot.third_party.third_party import get_data_dir, get_config_dir
 
 
 class Sqlite3DB(object):

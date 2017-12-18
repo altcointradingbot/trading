@@ -21,11 +21,11 @@ def get_config_dir():
 
 def get_data_dir2():
     # todo: refact this
-    return os.path.join(get_main_dir(), "Data/")
+    return os.path.join(get_main_dir(), "data/")
 
 
 def get_data_dir(exchanger):
-    return os.path.join(get_main_dir(), "Data/{}.database".format(exchanger))
+    return os.path.join(get_main_dir(), "data/{}.database".format(exchanger))
 
 
 print get_config_dir()

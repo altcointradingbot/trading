@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
-from tradingbot.Databases.sqlite3_api import Sqlite3DB, Sqlite3Table
-from tradingbot.Utils.Structures import BufferPair
+from tradingbot.databases.sqlite3_api import Sqlite3DB, Sqlite3Table
+from tradingbot.utils.Structures import BufferPair
 
 
 class BufferTable(Sqlite3Table):
