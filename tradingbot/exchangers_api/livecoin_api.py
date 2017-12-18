@@ -254,11 +254,11 @@ def get_payment_balance(currency):
 
 
 def get_payment_history_transactions(start, end, *args):
-    """"
+    """
     Returns a list of your transactions
 
     This method requires authorization.
-    """"
+    """
     result = get_data(" /payment/history/transactions", ("start", start),
                       ("end", end), *args)
 
@@ -269,11 +269,11 @@ def get_payment_history_transactions(start, end, *args):
 
 
 def get_payment_history_size(start, end, *args):
-    """"
+    """
     Returns your transaction count for the specified period
 
     This method requires authorization.
-    """"
+    """
     result = get_data("/payment/history/size", ("start", start),
                       ("end", end), *args)
     return result
