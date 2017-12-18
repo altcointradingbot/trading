@@ -168,7 +168,7 @@ def get_info_coin_info(*args):
         *	minDepositAmount - minimum amount for deposit
         *	minWithdrawAmount - minimum amount for withdrawal
 
-    """"
+    """
     data = get_data("/info/coinInfo", *args)
     info = data.get("info")
     info_coin_info = namedtuple("Info_coin_info", get_namedtuple(info[0]))
