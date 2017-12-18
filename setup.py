@@ -36,7 +36,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    entry_points = {
-    'console_scripts':['altcointradingbot=tradingbot.run.run']
+    entry_points={
+        'console_scripts': ['altcointradingbot=tradingbot.run.run']
     }
 )
