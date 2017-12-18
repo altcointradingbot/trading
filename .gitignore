@@ -102,3 +102,6 @@ ENV/
 
 #keys
 tradingbot/keys.txt
+
+#idea
+.idea/
