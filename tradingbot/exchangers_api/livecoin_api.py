@@ -66,7 +66,7 @@ def post_data(method, *args):
 
 def get_exchange_ticker(*args):
     """
-    To retrieve information on a particular currency pair for the last 24 hours. 
+    To retrieve information on a particular currency pair for the last 24 hours.
     There are the following fields in the response:
         *	max_bid, min_ask - maximal bid and minimal ask for the last 24 hours
         *	best_bid, best_ask - best current bid and ask
@@ -83,7 +83,8 @@ def get_exchange_ticker(*args):
 
 def get_exchange_last_trades(currency_pair, *args):
     """
-    To retrieve information on the latest transactions for a specified currency pair. 
+    To retrieve information on the latest transactions for a specified
+    currency pair. 
     You may receive data within the last hour or the last minute.
     """
     result = get_data("/exchange/last_trades", ("currencyPair",
@@ -97,7 +98,8 @@ def get_exchange_last_trades(currency_pair, *args):
 
 def get_exchange_order_book(currency_pair, *args):
     """
-    Used to get the orderbook for a given market (the grouping attribute can be set by price)
+    Used to get the orderbook for a given market (the grouping attribute
+    can be set by price)
     """
     result = get_data("/exchange/order_book", ("currencyPair",
                                                currency_pair), *args)
@@ -140,7 +142,7 @@ def get_exchange_maxbid_minask(*args):
 
 def get_exchange_restrictions(*args):
     """
-    Returns limits for minimum amount to open order, for each pair. 
+    Returns limits for minimum amount to open order, for each pair.
     Also returns maximum number of digits after the decimal point for price.
     """
     data = get_data("/exchange/restrictions", *args)
@@ -153,7 +155,7 @@ def get_exchange_restrictions(*args):
 
 
 def get_info_coin_info(*args):
-    """  
+    """
     Returns public data for currencies:
         *	name - name of cryptocurrency
         *	symbol - trading symbol of cryptocurrency
@@ -184,7 +186,7 @@ def get_info_coin_info(*args):
 
 def get_exchange_trades(*args):
     """
-    To retrieve information on your latest transactions. 
+    To retrieve information on your latest transactions.
 
     This method requires authorization.
     """
@@ -201,8 +203,9 @@ def get_exchange_trades(*args):
 # interaction with the system
 def get_exchange_client_orders(*args):
     """
-    To retrieve full information on your trade-orders for the specified currency pair.
-    You can optionally limit the response to orders of a certain type (open, closed, etc.)
+    To retrieve full information on your trade-orders for the specified
+    currency pair. You can optionally limit the response to orders of
+    a certain type (open, closed, etc.)
 
     This method requires authorization.
     """
@@ -232,8 +235,8 @@ def get_exchange_order(order_id):
 def get_payment_balances(*args):
     """
     Returns an array with your balances.
-    There are four types of balances for every currency: 
-    total, available (for trading), trade (amount in open orders), 
+    There are four types of balances for every currency:
+    total, available (for trading), trade (amount in open orders),
     available_withdrawal (amount available for withdrawal)
 
     This method requires authorization.
@@ -345,7 +348,8 @@ def post_exchange_sell_limit(currency_pair, price, quantity):
 
 def post_exchange_buy_market(currency_pair, quantity):
     """
-    Open a buy order (market) of the specified amount for a specific currency pair.
+    Open a buy order (market) of the specified amount for a specific
+    currency pair.
 
     This method requires authorization.
     """
@@ -359,7 +363,8 @@ def post_exchange_buy_market(currency_pair, quantity):
 
 def post_exchange_sell_market(currency_pair, quantity):
     """
-    To set a sell order (market) of the specified amount for a specific currency pair.
+    To set a sell order (market) of the specified amount for a specific
+    currency pair.
 
     This method requires authorization.
 
