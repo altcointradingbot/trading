@@ -6,7 +6,7 @@
 [![Telegram Chat][telegram-image]][Telegram Chat]
 
 Altcoin trading bot.
-[Read the Docs](https://github.com/altcointradingbot/trading/docs).
+[Read the Docs](https://github.com/altcointradingbot/trading/tree/master/docs).
 [Contribute](https://github.com/altcointradingbot/trading/blob/master/CONTRIBUTING.md).
 
 #### Install
