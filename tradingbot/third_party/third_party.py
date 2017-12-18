@@ -25,7 +25,7 @@ def get_data_dir2():
 
 
 def get_data_dir(exchanger):
-    return os.path.join(get_main_dir(), "data/{}.database".format(exchanger))
+    return os.path.join(get_main_dir(), "data/{}.db".format(exchanger))
 
 
 print get_config_dir()
