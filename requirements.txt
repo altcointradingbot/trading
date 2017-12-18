@@ -1,2 +1,0 @@
-setuptools==36.5.0
-pandas==0.20.3

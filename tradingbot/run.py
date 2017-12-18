@@ -3,7 +3,8 @@ from tradingbot.exchangers.livecoin_exchanger import LivecoinExchanger
 from tradingbot.deciders.simple_decider import SimpleDecider
 
 
-ALGORITM = BaseAlghoritm(
-    LivecoinExchanger(), SimpleDecider, "livecoin_config.json")
+def main():
+    ALGORITM = BaseAlghoritm(
+        LivecoinExchanger(), SimpleDecider, "livecoin_config.json")
 
-ALGORITM.run()
+    ALGORITM.run()

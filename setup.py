@@ -12,6 +12,15 @@ setup(
     license="MIT",
     packages=[
         "tradingbot",
+        "tradingbot.algorithms",
+        "tradingbot.configs",
+        "tradingbot.databases",
+        "tradingbot.deciders",
+        "tradingbot.examples",
+        "tradingbot.exchangers",
+        "tradingbot.exchangers_api",
+        "tradingbot.third_party",
+        "tradingbot.utils"
     ],
     install_requires=[
         "hashlib",
@@ -37,6 +46,6 @@ setup(
         "Programming Language :: Python :: 2.7",
     ],
     entry_points={
-        'console_scripts': ['altcointradingbot=tradingbot.run.run']
+        'console_scripts': ['altcointradingbot=tradingbot.run:main']
     }
 )

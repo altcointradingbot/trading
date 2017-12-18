@@ -104,6 +104,6 @@ ENV/
 tradingbot/keys.txt
 
 #idea
-.idea/
 
 lol.txt
+requirements.txt
