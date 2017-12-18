@@ -11,12 +11,12 @@ Altcoin trading bot.
 
 #### Install
 ```
-One day the installation process will be described here
+./setup.py build install
 ```
-#### Play
+#### Run
 
 ```
-One day the using process will be described here
+altcointradingbot
 ```
 
 ## Copyright
