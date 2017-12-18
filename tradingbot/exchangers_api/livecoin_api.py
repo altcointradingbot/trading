@@ -66,10 +66,10 @@ def post_data(method, *args):
 
 def get_exchange_ticker(*args):
     """
-    To retrieve information on a particular currency pair for the last 24 hours.
+    To retrieve information on a particular currency pair for the last 24 hours
     There are the following fields in the response:
-        *	max_bid, min_ask - maximal bid and minimal ask for the last 24 hours
-        *	best_bid, best_ask - best current bid and ask
+        * max_bid, min_ask - maximal bid and minimal ask for the last 24 hours
+        * best_bid, best_ask - best current bid and ask
 
     """
     result = get_data("/exchange/ticker", *args)
@@ -84,7 +84,7 @@ def get_exchange_ticker(*args):
 def get_exchange_last_trades(currency_pair, *args):
     """
     To retrieve information on the latest transactions for a specified
-    currency pair. 
+    currency pair.
     You may receive data within the last hour or the last minute.
     """
     result = get_data("/exchange/last_trades", ("currencyPair",
